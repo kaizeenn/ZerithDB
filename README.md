@@ -171,6 +171,40 @@ npx zerithdb types --output ./src/db.types.ts
 
 ---
 
+## Run Tests Locally (Unit vs E2E)
+
+After cloning and installing dependencies, use the commands below depending on the test type:
+
+```bash
+pnpm install
+
+# Run all unit + integration tests across the monorepo
+pnpm test
+
+# Run only end-to-end tests (Playwright)
+pnpm test:e2e
+
+# Optional: run tests for a single package while iterating
+pnpm --filter zerithdb-db test
+```
+
+### What runs with each command?
+
+- `pnpm test` → runs package-level tests (unit and integration) via Turborepo.
+- `pnpm test:e2e` → runs Playwright end-to-end flows from `tests/e2e/`.
+
+### Common troubleshooting
+
+- If Playwright browsers are missing, run:
+
+```bash
+npx playwright install
+```
+
+- If a package-specific test command is needed, use `pnpm --filter <package-name> test`.
+
+---
+
 ## Roadmap
 
 See [ROADMAP.md](ROADMAP.md) for the phased plan.
